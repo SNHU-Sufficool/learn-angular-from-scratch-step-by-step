@@ -1,33 +1,25 @@
-/* tslint:disable */
-import { Injectable, Inject, Optional } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { SDKModels } from './SDKModels';
-import { BaseLoopBackApi } from '../core/base.service';
-import { LoopBackConfig } from '../../lb.config';
-import { LoopBackAuth } from '../core/auth.service';
-import { LoopBackFilter,  } from '../../models/BaseModels';
-import { JSONSearchParams } from '../core/search.params';
-import { ErrorHandler } from '../core/error.service';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Rx';
-import { Answer } from '../../models/Answer';
-import { Question } from '../../models/Question';
-
+import { Injectable, Inject, Optional } from "@angular/core";
+import { SDKModels } from "./SDKModels";
+import { BaseLoopBackApi } from "../core/base.service";
+import { LoopBackConfig } from "../../lb.config";
+import { LoopBackAuth } from "../core/auth.service";
+import { ErrorHandler } from "../core/error.service";
+import { Observable } from "rxjs";
+import { Answer } from "../../models/Answer";
+import { HttpClient } from "@angular/common/http";
 
 /**
  * Api services for the `Answer` model.
  */
 @Injectable()
 export class AnswerApi extends BaseLoopBackApi {
-
   constructor(
-    @Inject(Http) protected http: Http,
+    @Inject(HttpClient) protected http: HttpClient,
     @Inject(SDKModels) protected models: SDKModels,
     @Inject(LoopBackAuth) protected auth: LoopBackAuth,
-    @Inject(JSONSearchParams) protected searchParams: JSONSearchParams,
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
-    super(http,  models, auth, searchParams, errorHandler);
+    super(http, models, auth, errorHandler);
   }
 
   /**
@@ -35,7 +27,7 @@ export class AnswerApi extends BaseLoopBackApi {
    *
    * @param {any} id answer id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -46,17 +38,32 @@ export class AnswerApi extends BaseLoopBackApi {
    * This usually means the response is a `Answer` object.)
    * </em>
    */
-  public getQuestion(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getQuestion(
+    id: any,
+    refresh: any = {},
+    customHeaders?: Function
+  ): Observable<any> {
     let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/answers/:id/question";
+    let _url: string =
+      LoopBackConfig.getPath() +
+      "/" +
+      LoopBackConfig.getApiVersion() +
+      "/answers/:id/question";
     let _routeParams: any = {
-      id: id
+      id: id,
     };
     let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    let _urlParams: { [key: string]: any } = {};
+    if (typeof refresh !== "undefined" && refresh !== null)
+      _urlParams.refresh = refresh;
+    let result = this.request<Answer>(
+      "GET",
+      _url,
+      _routeParams,
+      _urlParams,
+      _postBody,
+      customHeaders
+    );
     return result;
   }
 
@@ -76,16 +83,28 @@ export class AnswerApi extends BaseLoopBackApi {
    * This usually means the response is a `Answer` object.)
    * </em>
    */
-  public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "PATCH";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/answers";
+  public patchOrCreate(
+    data: any = {},
+    customHeaders?: Function
+  ): Observable<any> {
+    let _url: string =
+      LoopBackConfig.getPath() +
+      "/" +
+      LoopBackConfig.getApiVersion() +
+      "/answers";
     let _routeParams: any = {};
     let _postBody: any = {
-      data: data
+      data: data,
     };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    let _urlParams: { [key: string]: any } = {};
+    let result = this.request<Answer>(
+      "PATCH",
+      _url,
+      _routeParams,
+      _urlParams,
+      _postBody,
+      customHeaders
+    );
     return result;
   }
 
@@ -107,18 +126,31 @@ export class AnswerApi extends BaseLoopBackApi {
    * This usually means the response is a `Answer` object.)
    * </em>
    */
-  public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "PATCH";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/answers/:id";
+  public patchAttributes(
+    id: any,
+    data: any = {},
+    customHeaders?: Function
+  ): Observable<any> {
+    let _url: string =
+      LoopBackConfig.getPath() +
+      "/" +
+      LoopBackConfig.getApiVersion() +
+      "/answers/:id";
     let _routeParams: any = {
-      id: id
+      id: id,
     };
     let _postBody: any = {
-      data: data
+      data: data,
     };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    let _urlParams: { [key: string]: any } = {};
+    let result = this.request<Answer>(
+      "PATCH",
+      _url,
+      _routeParams,
+      _urlParams,
+      _postBody,
+      customHeaders
+    );
     return result;
   }
 

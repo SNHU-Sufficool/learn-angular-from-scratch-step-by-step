@@ -1,82 +1,83 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AnswersService } from '../services/answers.service'
-import { Question } from '../../../sdk/models/Question';
-import { MatDialog } from '@angular/material';
-import { DeleteAnswerModalComponent } from './delete-answer/delete-answer-modal.component';
-import { NewAnswerModalComponent } from './new-answer/new-answer-modal.component';
-import { UpdateAnswerModalComponent } from './update-answer/update-answer-modal.component';
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { AnswersService } from "../services/answers.service";
+import { Question } from "../../../sdk/models/Question";
+import { MatDialog } from "@angular/material/dialog";
+import { DeleteAnswerModalComponent } from "./delete-answer/delete-answer-modal.component";
+import { NewAnswerModalComponent } from "./new-answer/new-answer-modal.component";
+import { UpdateAnswerModalComponent } from "./update-answer/update-answer-modal.component";
+import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { MatListModule } from "@angular/material/list";
 
 @Component({
-  selector: 'answer',
-  styleUrls: ['./question-answers.scss'],
-  templateUrl: './question-answers.component.html'
+  selector: "answer",
+  styleUrls: ["./question-answers.scss"],
+  templateUrl: "./question-answers.component.html",
+  imports: [FormsModule, CommonModule, MatListModule],
 })
-
 export class QuestionAnswersComponent {
-
   question: Question;
 
   constructor(
     private answersService: AnswersService,
     private route: ActivatedRoute,
     public dialog: MatDialog
-  ){}
+  ) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe(routeData => {
-      let data = routeData['data'];
+    this.route.data.subscribe((routeData) => {
+      let data = routeData["data"];
       if (data) {
         this.question = data.question;
       }
-    })
+    });
   }
 
-  openNewAnswerModal(questionId){
+  openNewAnswerModal(questionId) {
     let dialogRef = this.dialog.open(NewAnswerModalComponent, {
-      data: { questionId: questionId }
+      data: { questionId: questionId },
     });
 
-    dialogRef.afterClosed().subscribe(answer => {
-      if(answer){
+    dialogRef.afterClosed().subscribe((answer) => {
+      if (answer) {
         this.addAnswerToList(answer);
       }
-    })
+    });
   }
 
-  openUpdateAnswerModal(answer){
+  openUpdateAnswerModal(answer) {
     let dialogRef = this.dialog.open(UpdateAnswerModalComponent, {
-      data: { answer: answer }
+      data: { answer: answer },
     });
-
   }
 
-  delete(answerId){
+  delete(answerId) {
     let dialogRef = this.dialog.open(DeleteAnswerModalComponent, {
-      data: { answerId: answerId }
+      data: { answerId: answerId },
     });
 
-    dialogRef.afterClosed().subscribe(confirm => {
-      if(confirm){
-        var index = this.question.answers.findIndex((answer) => answer.id === answerId);
+    dialogRef.afterClosed().subscribe((confirm) => {
+      if (confirm) {
+        var index = this.question.answers.findIndex(
+          (answer) => answer.id === answerId
+        );
         this.question.answers.splice(index, 1);
       }
-    })
-
+    });
   }
 
-  addPositiveVote(answer){
+  addPositiveVote(answer) {
     answer.positiveVotes += 1;
     this.answersService.updateAnswer(answer);
   }
 
-  addNegativeVote(answer){
+  addNegativeVote(answer) {
     answer.negativeVotes += 1;
     this.answersService.updateAnswer(answer);
   }
 
-  addAnswerToList(answer){
+  addAnswerToList(answer) {
     this.question.answers.push(answer);
   }
-
 }

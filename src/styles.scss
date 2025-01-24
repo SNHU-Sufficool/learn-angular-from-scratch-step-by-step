@@ -5,5 +5,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 $icon-font-path: "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/fonts/" !default;
 // Include Bootstrap styles
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap";
-@import '~bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import "../node_modules/bootstrap/scss/bootstrap";
+

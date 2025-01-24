@@ -1,32 +1,28 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
-import { SDKBrowserModule } from '../../../sdk/index';
-import { SlugifyPipe } from '../shared/slugify.pipe';
+import { HttpClient } from "@angular/common/http";
+
+import { SlugifyPipe } from "../shared/slugify.pipe";
 // Material modules
-import {
-  MatDialogModule,
-  MatToolbarModule,
-  MatListModule,
-  MatButtonModule,
-  MatChipsModule
-} from '@angular/material';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatListModule } from "@angular/material/list";
+import { MatButtonModule } from "@angular/material/button";
+import { MatChipsModule } from "@angular/material/chips";
 
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-
+import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SDKBrowserModule } from "sdk";
 
 @NgModule({
-  declarations: [
-    BreadcrumbComponent,
-    SlugifyPipe
-  ],
+  declarations: [],
   imports: [
+    SlugifyPipe,
+    BreadcrumbComponent,
     CommonModule,
-    HttpModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
@@ -35,16 +31,14 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     MatListModule,
     MatButtonModule,
     MatChipsModule,
-    SDKBrowserModule.forRoot(),
-    BrowserAnimationsModule
+    SDKBrowserModule.forRoot(), // Obsolete Loopback SDK import
+
+    BrowserAnimationsModule,
   ],
-  providers: [
-    SlugifyPipe
-  ],
+  providers: [SlugifyPipe, HttpClient],
   exports: [
     BreadcrumbComponent,
     CommonModule,
-    HttpModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
@@ -53,7 +47,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     MatToolbarModule,
     MatListModule,
     MatButtonModule,
-    MatChipsModule
-  ]
+    MatChipsModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
