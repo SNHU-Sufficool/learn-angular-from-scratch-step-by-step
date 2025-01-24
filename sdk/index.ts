@@ -1,4 +1,3 @@
-import { ErrorHandler } from "./services/core/error.service";
 import { LoopBackAuth } from "./services/core/auth.service";
 import { LoggerService } from "./services/custom/logger.service";
 import { SDKModels } from "./services/custom/SDKModels";
@@ -10,7 +9,6 @@ import { UserApi } from "./services/custom/User";
 import { QuestionApi } from "./services/custom/Question";
 import { AnswerApi } from "./services/custom/Answer";
 import { ModuleWithProviders, NgModule } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 /**
  * @module SDKBrowserModule
  * @description
@@ -22,9 +20,6 @@ import { HttpClient } from "@angular/common/http";
  **/
 @NgModule({
   imports: [CommonModule],
-  declarations: [],
-  exports: [],
-  providers: [ErrorHandler, HttpClient],
 })
 export class SDKBrowserModule {
   static forRoot(

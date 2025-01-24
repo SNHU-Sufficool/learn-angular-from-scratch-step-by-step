@@ -1,8 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 
-import { HttpClient } from "@angular/common/http";
-
 import { SlugifyPipe } from "../shared/slugify.pipe";
 // Material modules
 import { MatDialogModule } from "@angular/material/dialog";
@@ -35,7 +33,7 @@ import { SDKBrowserModule } from "sdk";
 
     BrowserAnimationsModule,
   ],
-  providers: [SlugifyPipe, HttpClient],
+  providers: [SlugifyPipe],
   exports: [
     BreadcrumbComponent,
     CommonModule,

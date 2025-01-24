@@ -21,13 +21,16 @@ import { AnswersService } from "./services/answers.service";
 
 import { AppComponent } from "./app.component";
 import { SharedModule } from "./shared/shared.module";
+import { provideHttpClient } from "@angular/common/http";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { RouterModule } from "@angular/router";
+import { BreadcrumbComponent } from "./shared/breadcrumb/breadcrumb.component";
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    AppComponent,
     CategoriesComponent,
     CategoryQuestionsComponent,
     NewQuestionModalComponent,
@@ -36,6 +39,10 @@ import { SharedModule } from "./shared/shared.module";
     QuestionAnswersComponent,
     DeleteQuestionModalComponent,
     DeleteAnswerModalComponent,
+
+    MatToolbarModule,
+    RouterModule,
+    BreadcrumbComponent,
   ],
   providers: [
     CategoriesService,
@@ -44,7 +51,9 @@ import { SharedModule } from "./shared/shared.module";
     CategoryQuestionsResolver,
     CategoriesResolver,
     QuestionAnswersResolver,
+    provideHttpClient(),
   ],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

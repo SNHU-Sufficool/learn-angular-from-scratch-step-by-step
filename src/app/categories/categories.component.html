@@ -1,6 +1,9 @@
 <div class="col-lg-12 categories">
   <div class="card col-md-offset-2 col-md-8">
-    <h3 class="list-title">Learn all about Angular</h3>
+    <h3 class="list-title">Categories</h3>
+    <div *ngIf="categories == null || categories.length == 0">
+      NO CATEGORIES
+    </div>
     <mat-list class="list">
       <mat-list-item class="list-item" *ngFor="let category of categories">
         <img matListAvatar class="avatar" [src]="category.image" />
