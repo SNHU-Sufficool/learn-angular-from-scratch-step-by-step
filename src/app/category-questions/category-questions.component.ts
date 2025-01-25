@@ -7,12 +7,13 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { MatListModule } from "@angular/material/list";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: "category-questions",
   styleUrls: ["./category-questions.scss"],
   templateUrl: "./category-questions.component.html",
-  imports: [MatListModule, RouterModule],
+  imports: [MatListModule, RouterModule, MatButtonModule],
 })
 export class CategoryQuestionsComponent implements OnInit {
   questions: Array<Question>;

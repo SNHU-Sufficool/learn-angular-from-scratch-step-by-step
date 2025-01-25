@@ -11,13 +11,14 @@ import { QuestionsService } from "../../services/questions.service";
 import { SlugifyPipe } from "../../shared/slugify.pipe";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { CommonModule } from "@angular/common";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: "new-question-modal",
   templateUrl: "./new-question-modal.component.html",
   exportAs: "newQuestionModal",
   styleUrls: ["../../styles/modals.scss"],
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, MatButtonModule],
   standalone: true,
   providers: [QuestionsService, SlugifyPipe],
 })

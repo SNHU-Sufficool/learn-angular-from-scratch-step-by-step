@@ -43,7 +43,6 @@ export class AnswerApi extends BaseLoopBackApi {
     refresh: any = {},
     customHeaders?: Function
   ): Observable<any> {
-    let _method: string = "GET";
     let _url: string =
       LoopBackConfig.getPath() +
       "/" +

@@ -8,13 +8,14 @@ import {
 } from "@angular/forms";
 import { AnswersService } from "../../services/answers.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: "new-answer",
   templateUrl: "./new-answer-modal.component.html",
   exportAs: "newAnswerModal",
   styleUrls: ["../../styles/modals.scss"],
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, MatButtonModule],
   standalone: true,
 })
 export class NewAnswerModalComponent implements OnInit {

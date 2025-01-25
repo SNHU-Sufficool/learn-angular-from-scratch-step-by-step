@@ -9,12 +9,13 @@ import { UpdateAnswerModalComponent } from "./update-answer/update-answer-modal.
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { MatListModule } from "@angular/material/list";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: "answer",
   styleUrls: ["./question-answers.scss"],
   templateUrl: "./question-answers.component.html",
-  imports: [FormsModule, CommonModule, MatListModule],
+  imports: [FormsModule, CommonModule, MatListModule, MatButtonModule],
 })
 export class QuestionAnswersComponent {
   question: Question;

@@ -8,13 +8,14 @@ import {
 } from "@angular/forms";
 import { AnswersService } from "../../services/answers.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: "update-answer-modal",
   templateUrl: "./update-answer-modal.component.html",
   exportAs: "updateAnswerModal",
   styleUrls: ["../../styles/modals.scss"],
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, MatButtonModule],
 })
 export class UpdateAnswerModalComponent implements OnInit {
   answerForm: FormGroup;
